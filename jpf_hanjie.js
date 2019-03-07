@@ -63,8 +63,38 @@ function init() {
       document.getElementById("puzzleTitle").innerHTML = "Puzzle 1";
 
       // Inserts the HTML code for the first puzzle table. 
-      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzleHint, puzzleRating, puzzle1);
+      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1);
 
+      //Add event handlers for the puzzle buttons 
+      var puzzleButtons = document.getElementsByClassName("puzzles");
+
+      // Loops through every object in the puzzleButtons array 
+      for (let i = 0; i < puzzleButtons.length; i++) {
+            puzzleButtons[i].onclick = swapPuzzle;
+      }
+}
+
+function swapPuzzle(e) {
+      // Retrieve the ID of the clicked button 
+      var puzzleID = e.target.id;
+
+      // Retrieve the value of the clicked button 
+      var puzzleTitle = e.target.value;
+
+      document.getElementById("puzzleTitle").innerHTML = puzzleTitle;
+
+      // Displays the puzzle based on the value of the puzzleID variable 
+      switch (puzzleID) {
+            case "puzzle1":
+                  document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1);
+                  break;
+            case "puzzle2":
+                  document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle2Hint, puzzle2Rating, puzzle2)
+                  break;
+            default:
+
+                  break;
+      }
 }
 
 
